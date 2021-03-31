@@ -11,9 +11,9 @@
 </head>
 <body>
 
-<h3>Contact Info ${contact}</h3>
+<h3>Contact Info ${sussMsg}</h3>
 
-<form:form action="saveContact" method="POST" modelAttribute="contact">
+<form:form action="saveContact?contactId=${contact.contactId}" method="POST" modelAttribute="contact">
 
 ${sussMsg}
 
@@ -39,6 +39,7 @@ ${sussMsg}
 
 </form:form>
 
+<a href="view-contacts">View All Contacts</a>
 
 
 </body>

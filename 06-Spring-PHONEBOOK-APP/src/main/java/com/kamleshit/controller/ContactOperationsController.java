@@ -1,4 +1,6 @@
 package com.kamleshit.controller;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,11 +23,12 @@ public class ContactOperationsController
 	  }
 	 
 	
-	@RequestMapping("/hello")
+	@GetMapping("/hello")
 	public String Hello(Model model)
 	{
 		
 		model.addAttribute("message","Hello JSP");
+		
 		return "contact";
 	}
 	
@@ -44,13 +47,14 @@ public class ContactOperationsController
 	@PostMapping("/saveContact")
 	public String handleSubmitBtn(Contact contact,Model model)
 	{
-		//System.out.println("Contact : " + contact);
+		System.out.println("Contact : " + contact);
 		
 		boolean isSaved = service.saveOrUpdate(contact);
 		
 		if(isSaved)
 		{
 			model.addAttribute("succMsg","Contact saved");
+			//System.out.println("succMsg");
 		}
 		else
 		{
@@ -61,10 +65,14 @@ public class ContactOperationsController
 	}
 	
 
-	public String handleViewsContactHyperlink()
+	@GetMapping("/view-contacts")
+	public String handleViewsContactHyperlink(Model model)
 	{
+		List<Contact> allContact = service.getAllContact();	
 		
-		return "contact";
+		model.addAttribute("contacts", allContact);
+		
+		return "contacts-display";
 	}
 	
 
