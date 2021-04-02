@@ -24,6 +24,10 @@ function confirmDelete()
 
 <h3>Contacts-display</h3>
 
+${succMsg} 
+
+${failMsg}
+
 <a href="loadform">Add New Contact</a>
 
 <table border="1">

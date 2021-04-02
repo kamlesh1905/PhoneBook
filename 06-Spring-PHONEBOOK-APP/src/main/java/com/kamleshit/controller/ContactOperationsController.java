@@ -1,5 +1,6 @@
 package com.kamleshit.controller;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kamleshit.Service.ContactService;
 import com.kamleshit.entity.Contact;
+import com.kamleshit.props.AppProperties;
 
 @Controller
 public class ContactOperationsController 
@@ -16,9 +18,12 @@ public class ContactOperationsController
 	
 	private ContactService service;
 	
-	public ContactOperationsController(ContactService service) 
+	private AppProperties props;
+	
+	public ContactOperationsController(ContactService service,AppProperties props) 
 	  {
 		  this.service = service;
+		  this.props=props;
 		  
 	  }
 	 
@@ -49,16 +54,29 @@ public class ContactOperationsController
 	{
 		System.out.println("Contact : " + contact);
 		
+		Integer contactId = contact.getContactId();
+		
 		boolean isSaved = service.saveOrUpdate(contact);
+		
+		Map<String, String> messages = props.getMessages();
 		
 		if(isSaved)
 		{
-			model.addAttribute("succMsg","Contact saved");
+			if(contactId==null)
+			{
+				model.addAttribute("succMsg", messages.get("contactSaved"));
+			}
+			else
+			{
+				model.addAttribute("succMsg", messages.get("contactUpdateSucc"));
+			}
+			
+			model.addAttribute("succMsg", messages.get("contactSaved"));
 			//System.out.println("succMsg");
 		}
 		else
 		{
-			model.addAttribute("failMsg","Failed to saved");
+			model.addAttribute("failMsg", messages.get("contactSaveFail"));
 		}
 		
 		return "contact";
