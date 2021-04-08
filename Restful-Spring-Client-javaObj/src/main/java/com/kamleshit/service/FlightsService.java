@@ -26,9 +26,8 @@ public class FlightsService
 		
 		if(status == 200) 
 		{
-			 Flights body = forEntity.getBody();
-		} 
-			 
+			 flights = forEntity.getBody();
+		} 	 
 			 return flights;
 			 		
 	}

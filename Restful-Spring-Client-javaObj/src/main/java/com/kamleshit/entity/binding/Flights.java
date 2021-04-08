@@ -2,6 +2,9 @@ package com.kamleshit.entity.binding;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Flights 
 {
 	private List<Flight> flights;
