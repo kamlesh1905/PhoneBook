@@ -11,11 +11,11 @@
 </head>
 <body>
 
-<h3>Contact Info ${sussMsg} </h3>
+<h3>Contact Info ${succMsg} </h3>
 
 <form:form action="saveContact?contactId=${contact.contactId}" method="POST" modelAttribute="contact">
 
-${sussMsg}
+${succMsg}
 
 <table>
  <tr>

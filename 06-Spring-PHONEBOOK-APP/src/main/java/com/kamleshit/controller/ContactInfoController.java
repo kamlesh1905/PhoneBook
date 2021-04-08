@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kamleshit.Service.ContactService;
+import com.kamleshit.constant.AppConstant;
 import com.kamleshit.entity.Contact;
 import com.kamleshit.props.AppProperties;
 
@@ -31,9 +32,9 @@ private ContactService service;
 	{
 		Contact contactById = service.getContactById(contactId);
 		
-		model.addAttribute("contact", contactById);
+		model.addAttribute(AppConstant.CONTACT, contactById);
 		
-		return "contact";
+		return AppConstant.CONTACT;
 
 	}
 

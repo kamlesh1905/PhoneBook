@@ -6,9 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.kamleshit.Service.ContactService;
+import com.kamleshit.constant.AppConstant;
 import com.kamleshit.entity.Contact;
 import com.kamleshit.props.AppProperties;
 
@@ -27,16 +26,6 @@ public class ContactOperationsController
 		  
 	  }
 	 
-	
-	@GetMapping("/hello")
-	public String Hello(Model model)
-	{
-		
-		model.addAttribute("message","Hello JSP");
-		
-		return "contact";
-	}
-	
 
 	 @GetMapping("/loadform")
 	
@@ -44,9 +33,9 @@ public class ContactOperationsController
 	{
 		Contact cobj = new Contact();
 		
-		model.addAttribute("contact", cobj);
+		model.addAttribute(AppConstant.CONTACT, cobj);
 		
-		return "contact";
+		return AppConstant.CONTACT;
 	}
 	
 	@PostMapping("/saveContact")
@@ -88,7 +77,7 @@ public class ContactOperationsController
 	{
 		List<Contact> allContact = service.getAllContact();	
 		
-		model.addAttribute("contacts", allContact);
+		model.addAttribute(AppConstant.CONTACT, allContact);
 		
 		return "contacts-display";
 	}
